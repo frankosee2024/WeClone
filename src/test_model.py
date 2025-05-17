@@ -2,6 +2,7 @@ import json
 import logging
 import os
 import sys
+from typing import List, Optional
 import openai
 sys.path.append(os.getcwd())
 import tqdm
@@ -21,7 +22,9 @@ openai.api_key = '''sk-test'''
 openai.api_base = "http://127.0.0.1:8000/v1"
 
 
-def handler_text(content: str, history: [], config):
+def handler_text(content: str, history: Optional[List] = None, config=None):
+    if history is None:
+        history = []
 
     messages = [{"role": "system", "content": f'{config.default_prompt}'}]
     for item in history:
