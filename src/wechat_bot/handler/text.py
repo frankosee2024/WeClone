@@ -1,4 +1,5 @@
 import logging
+from typing import List, Optional
 
 import openai
 
@@ -6,7 +7,9 @@ import openai
 log = logging.getLogger('text')
 
 
-def handler_text(content: str, history: [], config):
+def handler_text(content: str, history: Optional[List] = None, config=None):
+    if history is None:
+        history = []
     # todo 收到/clear清理历史记录
     # try:
     #    history.clear()
