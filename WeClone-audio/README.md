@@ -120,4 +120,26 @@ target_text = "晚上好啊"  # 生成目标文本
 result = tts.infer(target_text)
 sf.write(os.path.join(os.path.dirname(__file__), "output.wav"), result[1], result[0])  # 保存生成音频
 ```
+
+### GPT-SoVITS4模型
+在主环境中安装依赖:
+```bash
+uv pip install gptsovits4
+```
+
+使用代码推理
+```python
+import os
+import torch
+from gpt_sovits4 import GPTSoVITS4
+
+model = GPTSoVITS4("WeClone-audio/pretrained_models/GPT-SoVITS4", device="cuda")
+
+text = "晚上好啊,小可爱们，该睡觉了哦"
+reference_audio = os.path.join(os.path.dirname(__file__), "sample.wav")
+
+with torch.no_grad():
+    wav = model.inference(text, reference_audio)
+    model.save(wav, os.path.join(os.path.dirname(__file__), "output_gpt_sovits4.wav"))
+```
    

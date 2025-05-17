@@ -24,6 +24,7 @@ sparktts = [
     "tqdm>=4.66.5",
     "transformers==4.45.2",
 ]
+gptsovits4 = ["gptsovits4"]
 main = ["transformers==4.45.2", "llamafactory>=0.9.2", "openai==0.28.0"]
 
 [tool.uv]
